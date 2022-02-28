@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 import time
 from pylab import * 
-
 from City import *
+from RealRemoteWorkers import *
 
 Occupations.defineOccupations()
 Industry.defineBreakDowns()
@@ -52,9 +52,9 @@ def realRemoteWorkersInYear(x):
 #     print(predictedRemoteWorkersInYear(year))
 #     print(realRemoteWorkersInYear(year))
 
-remoteJobs, allJobs = predictedRemoteWorkersInYear(2027)
+remoteJobs, allJobs = predictedRemoteWorkersInYear(2005)
 print(remoteJobs/allJobs)
-    
+
 plt.title("Avg number of Employees by industry")
 plt.xlabel("Industry")
 plt.ylabel("Employees")

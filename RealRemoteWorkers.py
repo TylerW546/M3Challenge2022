@@ -11,10 +11,6 @@ def exponential(x, a, b, c):
 
 
 
-
-
-
-
 fullyHomeDatePre  = []
 fullyHomePre = []
 partialHomeDatePre = []

@@ -1,0 +1,33 @@
+Mining, logging, construction:
+   Farming, fishing and forestry   2.96   1
+   Construction and extraction   25.5   0
+   Architecture and engineering   71.6   61
+Manufacturing:
+   Production   100.00   1
+Trade, transportation, and utilities:
+   Transportation and material moving   55.6   3
+   Installation, maintenance and repair   23.2   1
+   Building and grounds cleaning and maintenance   21.3   0
+Information:
+   Computer and mathematical   100.00   100
+Financial activities:
+   Sales and related   59.9   28
+   Business and financial operations   40.1   88
+Professional and business services:
+   Management   63.5   87
+   Office and administrative   21.8   65
+   Business and financial operations   14.7   88
+Education and health services:
+   Education, training and library   41.9   98
+   Healthcare support   6.58   2
+   Food preparation and service related   6.48   0
+   Healthcare practitioners and technical   45.0   5
+Leisure and hospitality:
+   Arts, design, entertainment, sports and media   71.7   76
+   Personal care and service   28.3   26
+Other services:
+   Life, physical and social science   100.00   54
+Government:
+   Protective service   22.0   6
+   Legal   31.9   97
+   Community and social service   46.1   37

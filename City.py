@@ -6,30 +6,6 @@ from pylab import *
 
 
 class Occupations():
-    Occupations = [
-        "Computer and mathematical",
-        "Education, training and library",
-        "Legal",
-        "Business and financial operations",
-        "Management",
-        "Arts, design, entertainment, sports and media",
-        "Office and administrative",
-        "Architecture and engineering",
-        "Life, physical and social science",
-        "Community and social service",
-        "Sales and related",
-        "Personal care and service",
-        "Protective service",
-        "Healthcare practitioners and technical",
-        "Transportation and material moving",
-        "Healthcare support",
-        "Farming, fishing and forestry",
-        "Production",
-        "Installation, maintenance and repair",
-        "Construction and extraction",
-        "Food preparation and service related",
-        "Building and grounds cleaning and maintenance"]
-    
     OccupationDict = {}
     
     def defineOccupations():
@@ -61,7 +37,24 @@ class Industry:
     
     Breakdowns = {}
     
-    def defineBreakDowns
+    def defineBreakDowns():
+        data = open("IndustryBreakdowns/IndustriesUS.txt")
+        dataList = data.read().split("\n")
+        data.close()
+        
+        lineNum = 0
+        currentIndustry = ""
+        while lineNum < len(dataList):
+            if ":" in dataList[lineNum]:
+                currentIndustry = dataList[lineNum][:-1]
+            else:
+                if currentIndustry not in Industry.Breakdowns:
+                    Industry.Breakdowns[currentIndustry] = {}
+                thisLine = dataList[lineNum].split("   ")
+                
+                Industry.Breakdowns[currentIndustry][thisLine[1]] = float(thisLine[2])/100
+            lineNum += 1
+        
     
     def __init__(self, data, name):
         self.data = data
@@ -77,7 +70,7 @@ class Industry:
     def plotApproxEmployees(self):
         plt.plot(City.Years, self.data, 'yo', City.Years, self.employeeFunction(City.Years), '--k')
 
-        
+
 
 
 class City:
@@ -100,21 +93,9 @@ class City:
     def getFields(self):
         self.industries = []
         for industryIndex in range(len(self.table)):
-            self.industrys.append(Industry(self.table[industryIndex], City.IndusIndustriestry[industryIndex]))
+            self.industries.append(Industry(self.table[industryIndex], Industry.Industries[industryIndex]))
     
     def regression(self):
         self.linearFunctions = []
         for industry in self.industries:
             industry.regression()
-            
-
-            
-        
-        
-        
-        
-        
-
-
-  
-      
