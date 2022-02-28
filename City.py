@@ -38,7 +38,7 @@ class Industry:
     Breakdowns = {}
     
     def defineBreakDowns():
-        data = open("IndustryBreakdowns/IndustriesUS.txt")
+        data = open("IndustryBreakdowns/Industries.txt")
         dataList = data.read().split("\n")
         data.close()
         
@@ -64,7 +64,10 @@ class Industry:
         plt.plot(City.Years, self.data, label=self.name)
     
     def regression(self):
-        coef = np.polyfit(City.Years,self.data,1)
+        if self.name not in ["Liverpool", "Barry"]:
+            coef = np.polyfit(City.Years,self.data,1)
+        else:
+            coef = np.polyfit(City.Years[1:],self.data,1)
         self.employeeFunction = np.poly1d(coef)
 
     def plotApproxEmployees(self):
@@ -85,9 +88,13 @@ class City:
             for j in range(len(self.table[i])):
                 self.table[i][j] = int(self.table[i][j])
         
-        for industryIndex in range(len(self.table)):
-            self.table[industryIndex] = self.table[industryIndex][:len(City.Years)]
-        
+        if name not in ["Liverpool", "Barry"]:
+            for industryIndex in range(len(self.table)):
+                self.table[industryIndex] = self.table[industryIndex][:len(City.Years)]
+        else:
+            for industryIndex in range(len(self.table)):
+                self.table[industryIndex] = self.table[industryIndex][:len(City.Years)-1]
+                
         self.getFields()
             
     def getFields(self):
