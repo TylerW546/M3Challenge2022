@@ -11,13 +11,17 @@ def exponential(x, a, b, c):
 
 
 
+
+
+
+
 fullyHomeDatePre  = []
 fullyHomePre = []
 partialHomeDatePre = []
 partialHomePre = []
 
 # Parse through pre covid partial and fully online rates
-with open('Pre-Covid.txt') as f:
+with open('D4-Inputs/Pre-Covid.txt') as f:
     lines = f.readline().split()
     while lines:
         print(lines)
@@ -37,7 +41,7 @@ partialHomeDatePost = []
 partialHomePost = []
 
 # Parse through post covid partial and fully online rates
-with open('Post-Covid.txt') as f:
+with open('D4-Inputs/Post-Covid.txt') as f:
     lines = f.readline().split()
     while lines:
         print(lines)
@@ -105,7 +109,7 @@ print(partialHomePost)
 
 # Regress partial and full working from home after logging each
 fullHomeModelPost = np.poly1d(np.polyfit(fullyHomeDatePost, np.log(fullyHomePost), 1))
-partialHomeModelPost = np.poly1d(np.polyfit(partialHomeDatePost, np.log(partialHomePost), 1))
+partialHomeModelPost = np.poly1d(np.polyfit(partialHomeDatePost, partialHomePost, 1))
 
 for i in range(len(partialHomeDatePost)):
     print(partialHomeModelPost(partialHomeDatePost[i]), end=', ')
