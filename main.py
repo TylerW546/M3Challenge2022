@@ -26,10 +26,13 @@ for industry in cityList[0].industries:
     industry.plot()
     industry.regression()
     industry.plotApproxEmployees()
-    
 
-for industry in Industry.Industires:
-    
+def predictedRemoteWorkersInYear(x):
+    totalRemoteWorkers = 0
+    for industry in cityList[0].industries:
+        for occupation in Industry.Breakdowns[industry.name]:
+            totalRemoteWorkers += industry.employeeFunction(x) * Industry.Breakdowns[industry.name][occupation] * Occupations.OccupationDict[occupation]
+        
 
     
 plt.title("Avg number of Employees by industry")
