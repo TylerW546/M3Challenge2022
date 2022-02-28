@@ -1,0 +1,22 @@
+Computer and mathematical	100.00%
+Education, training and library	98.00%
+Legal	97.00%
+Business and financial operations	88.00%
+Management	87.00%
+Arts, design, entertainment, sports and media	76.00%
+Office and administrative	65.00%
+Architecture and engineering	61.00%
+Life, physical and social science	54.00%
+Community and social service	37.00%
+Sales and related	28.00%
+Personal care and service	26.00%
+Protective service	6.00%
+Healthcare practitioners and technical	5.00%
+Transportation and material moving	3.00%
+Healthcare support	2.00%
+Farming, fishing and forestry	1.00%
+Production	1.00%
+Installation, maintenance and repair	1.00%
+Construction and extraction	0.00%
+Food preparation and service related	0.00%
+Building and grounds cleaning and maintenance	0.00%

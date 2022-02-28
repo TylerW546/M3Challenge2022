@@ -4,14 +4,16 @@ import matplotlib
 import time
 from pylab import * 
 
-from City import City
+from City import *
+
+Occupations.defineOccupations()
 
 cities = ["Seattle", "Omaha", "Scranton", "Liverpool", "Barry"]
 
 cityList = []
 
 
-
+# Making City objects
 for city in cities:
     cityData = open("D1-Inputs/" + city + ".txt")
     cityInputString = cityData.read()
@@ -19,9 +21,16 @@ for city in cities:
     
     cityList.append(City(city, cityInputString))
 
+# Plotting Seattles idustries
+for industry in cityList[0].industries:
+    industry.plot()
+    industry.regression()
+    industry.plotApproxEmployees()
+    
 
-for fieldIndex in range(len(cityList[0].table)):
-    plt.plot(City.Years, cityList[0].table[fieldIndex], label=City.Fields[fieldIndex])
+for industry in Industry.Industires:
+    
+
     
 plt.title("Avg number of Employees by industry")
 plt.xlabel("Industry")
