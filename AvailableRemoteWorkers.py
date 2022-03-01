@@ -19,7 +19,7 @@ yearMin = 2000
 yearMax = 2030
 
 # This is a dicitonary that will store one list of remote-ready workers for each year in the specified range 
-availableWorkersPerCity = {}
+readyWorkersPerCity = {}
 # This is a dicitonary that will store one list of total workers for each year in the specified range
 totalWorkersPerCity = {}
 
@@ -56,15 +56,11 @@ def realRemoteWorkersInYear(x, cityNum):
             totalRemoteWorkers += industry.data[City.Years.index(x)] * Industry.Breakdowns[industry.name][occupation] * Occupations.OccupationDict[occupation]
     return totalRemoteWorkers, totalWorkers
 
-def percentageRemoteInYear(year):
-    percentWorkersRemote = []
-    for city in range(5):
-        remote, total = predictedRemoteWorkersInYear(year, city)
-        percentWorkersRemote.append(remote/total)
-    return percentWorkersRemote
+def percentageRemoteInYear(year, city):
+    remote, total = predictedRemoteWorkersInYear(year, city)
+    return remote/total
 
-print(percentageRemoteInYear(2021))
-
+# For each year in the range, find the remote-ready and total workers in each city
 for year in range(yearMin, yearMax+1):
     remoteWorkersList = []
     totalWorkersList = []
@@ -72,34 +68,35 @@ for year in range(yearMin, yearMax+1):
         remoteReady, totalWorkers = predictedRemoteWorkersInYear(year, city)
         remoteWorkersList.append(remoteReady)
         totalWorkersList.append(totalWorkers)
-    availableWorkersPerCity[year] = remoteWorkersList
+    readyWorkersPerCity[year] = remoteWorkersList
     totalWorkersPerCity[year] = totalWorkersList
 
-global globalWorkersList
-globalWorkersList = []
 
-weightedAverageRemoteWorkers = {}
+# For each year, go through and find the 
+weightedGlobalPercentageRemoteWorkers = {}
 for year in range(yearMin, yearMax+1):
     totalWorkersList = totalWorkersPerCity[year]
-    availableWorkersList = availableWorkersPerCity[year]
+    readyWorkersList = readyWorkersPerCity[year]
     
     totalWorkers = sum(totalWorkersList)
-    globalWorkersList.append(totalWorkers)
     
-    weightedAverageRemoteWorkers[year] = 0
+    weightedGlobalPercentageRemoteWorkers[year] = 0
 
     for i in range(5):
-        weightedAverageRemoteWorkers[year] += availableWorkersList[i]
-    weightedAverageRemoteWorkers[year]/=totalWorkers
+        weightedGlobalPercentageRemoteWorkers[year] += percentageRemoteInYear(year, i) * totalWorkersList[i]/totalWorkers
 
-percentageRemoteInYear(2021, )
+def getGlobalReadyWorkerPercentage():
+    y = []
+    for i in range(yearMin, yearMax+1):
+        y.append(weightedGlobalPercentageRemoteWorkers[i]*100)
+    return y
 
 def plotAverageRemoteWorkers():
     x = []
     y = []
-    for i in range(yearMin, yearMax):
+    for i in range(yearMin, yearMax+1):
         x.append(i)
-        y.append(weightedAverageRemoteWorkers[i])
+        y.append(weightedGlobalPercentageRemoteWorkers[i]*100)
 
     polyline = np.linspace(yearMin, yearMax, 50)
     plt.plot(x, y, label="Average Available Workers")

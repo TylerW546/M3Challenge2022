@@ -56,15 +56,16 @@ class Industry:
             lineNum += 1
         
     
-    def __init__(self, data, name):
+    def __init__(self, data, name, cityName):
         self.data = data
         self.name = name
+        self.cityName = cityName
         
     def plot(self):
         plt.plot(City.Years, self.data, label=self.name)
     
     def regression(self):
-        if self.name not in ["Liverpool", "Barry"]:
+        if self.cityName not in ["Liverpool", "Barry"]:
             coef = np.polyfit(City.Years,self.data,1)
         else:
             coef = np.polyfit(City.Years[1:],self.data,1)
@@ -81,6 +82,7 @@ class City:
     
     def __init__(self, name, inputString):
         self.table = []
+        self.name = name
         
         self.table = inputString.split("\n")
         for i in range(len(self.table)):
@@ -88,19 +90,19 @@ class City:
             for j in range(len(self.table[i])):
                 self.table[i][j] = int(self.table[i][j])
         
-        if name not in ["Liverpool", "Barry"]:
+        if self.name not in ["Liverpool", "Barry"]:
             for industryIndex in range(len(self.table)):
                 self.table[industryIndex] = self.table[industryIndex][:len(City.Years)]
         else:
             for industryIndex in range(len(self.table)):
                 self.table[industryIndex] = self.table[industryIndex][:len(City.Years)-1]
                 
-        self.getFields()
+        self.getIndustries()
             
-    def getFields(self):
+    def getIndustries(self):
         self.industries = []
         for industryIndex in range(len(self.table)):
-            self.industries.append(Industry(self.table[industryIndex], Industry.Industries[industryIndex]))
+            self.industries.append(Industry(self.table[industryIndex], Industry.Industries[industryIndex], self.name))
     
     def regression(self):
         self.linearFunctions = []
