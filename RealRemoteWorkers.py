@@ -3,17 +3,10 @@ import matplotlib.pyplot as plt
 import matplotlib
 import time
 import scipy
-from AvailableRemoteWorkers import *
+from ReadyRemoteWorkers import *
 
-# Exponential function
-def exponential(x, a, b, c):
-    return a * np.exp(-b * x) + c
-
-
-
-
-
-
+# This file is used for creating the Q2 Graphs.
+# The mathematics behind the code is explained above
 
 fullyHomeDatePre  = []
 fullyHomePre = []
@@ -33,7 +26,6 @@ with open('D4-Inputs/Pre-Covid.txt') as f:
 
         lines = f.readline().split()
 f.close()
-
 
 fullyHomeDatePost  = []
 fullyHomePost = []
@@ -56,10 +48,6 @@ f.close()
 
 print(len(fullyHomeDatePost))
 print(len(fullyHomePost))
-
-
-
-
 
 
 # Set up of graph
@@ -118,7 +106,7 @@ plt.plot(polyline, partialHomeModelPre(polyline) / (1 + np.e**partialHomeModelPo
 plt.plot(polyline, np.e**fullHomeModelPost(polyline)+fullHomeModelPre(polyline) + partialHomeModelPre(polyline) / (1 + np.e**partialHomeModelPost(polyline)), label='Post-Covid Working at Home Total')
 
 def totalAtHome(year):
-    return np.e**fullHomeModelPost(year)+fullHomeModelPre(year) + partialHomeModelPre(year) / (1 + np.e**partialHomeModelPost(year))
+    return np.e**fullHomeModelPost(year)+fullHomeModelPre(year)
 
 # Find average deviation for each graph
 partialHomePreDeviation = []
